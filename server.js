@@ -57,23 +57,12 @@ app.get('/todos/:id', function(req, res) {
 app.post('/todos', function(req, res) {
 	let body = _.pick(req.body, 'description', 'completed');
 
-	if(!_isString(body.description) || body.description.trim().length === 0){
-		return res.status(400).send();
-	}
-
-	
-	
-
-	// if (!_.isBoolean(body.completed) || !_.isString(body.description) || body.description.trim().length === 0) {
-	// 	return res.status(400).send();
-	// }
-
-	// body.description = body.description.trim();
-	// body.id = todoNextId++;
-
-	// todos.push(body);
-
-	// res.json(body);
+	db.todo.create(body).then(function(todo){
+		console.log("HELP");
+		res.json(todo.toJSON());
+	}).catch(function(e){
+		res.status(400).json(e);
+	});
 });
 
 // DELETE /todos/:id
