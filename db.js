@@ -10,5 +10,5 @@ db.todo = sequalize.import(__dirname + '/models/todo.js');
 db.sequalize = sequalize;
 db.Sequalize = Sequalize;
 
-
+//Here some comment stuff
 module.exports = db;
